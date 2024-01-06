@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        .converter-box {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 300px;
+            margin: auto;
+        }
+
+        label {
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+
+        select {
+            padding: 8px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="converter-box">
+        <i class="fas fa-temperature-high icon"></i>
+        <h2>Temperature Converter</h2>
+
+        <label for="temperature">Temperature:</label>
+        <input type="text" id="temperature" placeholder="Enter temperature"
+         oninput="validateInput()">
+
+        <label for="unit">Unit:</label>
+        <select id="unit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+        </select>
+
+        <button onclick="convertTemperature()">Convert</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function validateInput() {
+            var temperatureInput = document.getElementById('temperature').value;
+            if (isNaN(temperatureInput)) {
+                alert('Please enter a valid number for temperature.');
+                document.getElementById('temperature').value = '';
+            }
+        }
+
+        function convertTemperature() {
+            var temperatureInput = parseFloat(document.getElementById('temperature').value);
+            var unit = document.getElementById('unit').value;
+            var resultElement = document.getElementById('result');
+
+            if (isNaN(temperatureInput)) {
+                alert('Please enter a valid number for temperature.');
+                document.getElementById('temperature').value = '';
+                resultElement.innerHTML = '';
+                return;
+            }
+
+            if (unit === 'celsius') {
+                resultElement.innerHTML = 'Converted Temperature: ' + ((temperatureInput * 9/5) + 32) + ' °F';
+            } else if (unit === 'fahrenheit') {
+                resultElement.innerHTML = 'Converted Temperature: ' + ((temperatureInput - 32) * 5/9) + ' °C';
+            } else if (unit === 'kelvin') {
+                resultElement.innerHTML = 'Converted Temperature: ' + (temperatureInput + 273.15) + ' K';
+            }
+        }
+    </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-f66hf6hQYP0vEajrmyZE8k6g16wDdIChM+5L6FQvsqclq5EBxg0ke2j3g8Fv5AitQ" crossorigin="anonymous">
+<style>
+    .slider-container {
+        position: relative;
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+    }
+
+    .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .slide i {
+        font-size: 48px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .slide h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .slide p {
+        font-size: 16px;
+        color: #555;
+    }
+
+    .slide a {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #ff004f;
+        border-radius: 5px;
+    }
+
+    .prev, .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 24px;
+        color: #fff;
+        background-color: #ff004f;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+  
